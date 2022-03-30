@@ -6,6 +6,3 @@ services: mongodb
 
 before_script:
   - sleep 15
-
-env:
-  - MONGODB_URI: MONGODB_URI
