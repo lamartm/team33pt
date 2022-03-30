@@ -4,8 +4,5 @@ node_js:
 
 services: mongodb
 
-env:
-  - MONGODB_URI=$MONGODB_URI
-
 before_script:
   - sleep 15
