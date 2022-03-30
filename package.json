@@ -21,7 +21,7 @@
     "rollup": "^2.70.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": {
