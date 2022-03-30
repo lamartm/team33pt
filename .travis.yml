@@ -8,4 +8,5 @@ env:
   - MONGODB_URI=$MONGODB_URI
 
 before_script:
+  - console.log(process.env)
   - sleep 15
