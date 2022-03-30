@@ -1,14 +1,15 @@
 language: node_js
 node_js:
   - lts/*
+  - "14.16.0"
 
 services: mongodb
 
 env:
   global:
-    - MONGODB_UR: $MONGODB_URI
+    - MONGODB_URI: $MONGODB_URI
   jobs:
-    - MONGODB_UR: $MONGODB_URI
+    - MONGODB_URI: $MONGODB_URI
 
 before_script:
   - sleep 15
