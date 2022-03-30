@@ -8,5 +8,7 @@ env:
   - MONGODB_URI=$MONGODB_URI
 
 before_script:
-  - echo process.env
   - sleep 15
+
+script:
+  - echo $MONGODB_URI
