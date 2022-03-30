@@ -5,10 +5,10 @@ node_js:
 services: mongodb
 
 env:
-  - MONGODB_URI=$MONGODB_URI
+  global:
+  - MONGODB_URI: $MONGODB_URI
+  jobs:
+  - MONGODB_URI: $MONGODB_URI
 
 before_script:
   - sleep 15
-
-script:
-  - echo $MONGODB_URI
