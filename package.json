@@ -21,7 +21,7 @@
     "rollup": "^2.70.1"
   },
   "scripts": {
-    "test": "nodemon server.js --env MONGODB_URI",
+    "test": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": {
