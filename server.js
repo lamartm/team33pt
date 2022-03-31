@@ -11,7 +11,9 @@ const dbName = "tech-3-3";
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 app.use((err, req, res, next) => {
   res.status(404).send("404 not found");
@@ -20,6 +22,12 @@ app.use((err, req, res, next) => {
 app.get("/", (req, res) => {
   res.render("login", {
     pageTitle: `log-in`,
+  });
+});
+
+app.get("/likes", (req, res) => {
+  res.render("likes", {
+    pageTitle: `likes`,
   });
 });
 
@@ -45,15 +53,15 @@ app.get("/profile/:id", (req, res) => {
 });
 
 app.get("/error/:id", (req, res) => {
-  req.params.id === "email"
-    ? res.render("error", {
-        data: "De gekozen e-mail adres is al in gebruik",
-        pageTitle: `error`,
-      })
-    : res.render("error", {
-        data: "Gebruiker niet gevonden",
-        pageTitle: `error`,
-      });
+  req.params.id === "email" ?
+    res.render("error", {
+      data: "De gekozen e-mail adres is al in gebruik",
+      pageTitle: `error`,
+    }) :
+    res.render("error", {
+      data: "Gebruiker niet gevonden",
+      pageTitle: `error`,
+    });
 });
 
 app.post("/login", checkForUser);
@@ -75,7 +83,9 @@ function createUser(req, res) {
   };
 
   getUserData(dbName).then(async (data) => {
-    const emailCheck = await data.findOne({ email: req.body.email });
+    const emailCheck = await data.findOne({
+      email: req.body.email
+    });
 
     if (emailCheck === null) {
       data.insertOne(newUserData);
@@ -97,8 +107,8 @@ function checkForUser(req, res) {
       })
     )
     .then((user) =>
-      user
-        ? res.redirect("/profile/" + username)
-        : res.redirect("/error/" + "user")
+      user ?
+      res.redirect("/profile/" + username) :
+      res.redirect("/error/" + "user")
     );
 }

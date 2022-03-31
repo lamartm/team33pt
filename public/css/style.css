@@ -205,3 +205,17 @@ body {
     justify-content: center;
     align-items: center;
   }
+  section ul li {
+    width: 100%;
+  }
+  .activitypic {
+    position: relative;
+    z-index: -1;
+  }
+  .activityname {
+    position: absolute;
+    width:100%;
+    z-index: 100;
+    background-color: #d3872f;
+    
+  }
