@@ -104,22 +104,8 @@ function checkForUser(req, res) {
     );
 }
 
-// app.get('/homepage', (req, res) => {
-//   res.render('homepage.ejs', {
-//     root: __dirname
-//   });
-// });
-
-// Homepage images
-// app.get('/homepage', async (req, res) => {
-//   //FIND IMAGE
-//   const images = await db.collection('Images').find({}).toArray();
-//   res.render('homepage', {
-//     images
-//   });
-// });
-
 app.get('/homepage', async (req, res) => {
+  // Deze regel uncommenten zodra er een database is aangemaakt voor reviews
   // const reviews = await db.collection('review').find({}).toArray();
   res.render('homepage', {
     review: reviews[Math.floor(Math.random() * reviews.length)]
@@ -130,33 +116,6 @@ app.get('/homepage', async (req, res) => {
 app.post('/homepage', (req, res) => {
 db.collection('Reviews').insertOne(req.body);
 });
-
-
-
-
-// // review koppelen aan image
-// app.get('/image/:id', async (req, res) => {
-//   const imageId = Number(req.params.id);
-//   const query = {
-//     "id": imageId
-//   };
-//   const image = await db.collection('Images').findOne(query);
-//   res.render('review', {
-//     image
-//   });
-// });
-
-// // Review versturen
-// app.post('/homepage', (req, res) => {
-//   db.collection('Reviews').insertOne(req.body);
-// });
-
-// app.get('/homepage', async (req, res) => {
-//     const reviews = await db.collection('review').find({}).toArray();
-//     res.render('homepage', {
-//       reviews
-//     });
-//   });
 
 
 
