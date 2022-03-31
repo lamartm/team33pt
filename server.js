@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 const slug = require("slug");
+const reviews = require('./review.json');
 
 const getUserData = require("./database");
 
@@ -103,37 +104,59 @@ function checkForUser(req, res) {
     );
 }
 
-//Homepage images
+// app.get('/homepage', (req, res) => {
+//   res.render('homepage.ejs', {
+//     root: __dirname
+//   });
+// });
+
+// Homepage images
+// app.get('/homepage', async (req, res) => {
+//   //FIND IMAGE
+//   const images = await db.collection('Images').find({}).toArray();
+//   res.render('homepage', {
+//     images
+//   });
+// });
+
 app.get('/homepage', async (req, res) => {
-  //FIND IMAGE
-  const images = await db.collection('Images').find({}).toArray();
+  // const reviews = await db.collection('review').find({}).toArray();
   res.render('homepage', {
-    images
-  });
-});
-
-
-// review koppelen aan image
-app.get('/image/:id', async (req, res) => {
-  const imageId = Number(req.params.id);
-  const query = {
-    "id": imageId
-  };
-  const image = await db.collection('Images').findOne(query);
-  res.render('review', {
-    image
+    review: reviews[Math.floor(Math.random() * reviews.length)]
   });
 });
 
 // Review versturen
 app.post('/homepage', (req, res) => {
-  db.collection('Reviews').insertOne(req.body);
+db.collection('Reviews').insertOne(req.body);
 });
 
-app.get('/homepage', async (req, res) => {
-    const reviews = await db.collection('review').find({}).toArray();
-    res.render('homepage', {
-      reviews
-    });
-  });
+
+
+
+// // review koppelen aan image
+// app.get('/image/:id', async (req, res) => {
+//   const imageId = Number(req.params.id);
+//   const query = {
+//     "id": imageId
+//   };
+//   const image = await db.collection('Images').findOne(query);
+//   res.render('review', {
+//     image
+//   });
+// });
+
+// // Review versturen
+// app.post('/homepage', (req, res) => {
+//   db.collection('Reviews').insertOne(req.body);
+// });
+
+// app.get('/homepage', async (req, res) => {
+//     const reviews = await db.collection('review').find({}).toArray();
+//     res.render('homepage', {
+//       reviews
+//     });
+//   });
+
+
 

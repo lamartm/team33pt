@@ -5,43 +5,22 @@
 </head>
 
 <body>
-
-    <h1>Jouw matches</h1>
     
     <main>
-        <% images.forEach(function(image){ %>
-            <section class="option">
-                <div>
-                    <section>
-                        <h2><%= image.name %></h2>
-                        <h3><%= image.storyline %></h3>
-                        <img src="/images/<%= image.url %>" alt="">
-                    </section>
-                </div>
+        <div id="review">
+            <form action="/homepage" method="POST">
+                <h2>Reviews</h2>
+                    <h2><%= review.name%></h2>
+                    <h3><%= review.review %></h3>
 
-                <div>
-                    <a href="#">Nee</a>
-                    <a href="image/<%= image.id %>">Ja</a>
-                </div>
-            </section>
-        <% }) %>
+                <br><br>
+                <input type="text" name="name" placeholder="Your name"><br>
+                <input type="text" name="review" placeholder="Schrijf een review!"><br><br>
+                <input type="submit" value="Verstuur">
+            </form>
+        </div>
     </main>
 
-    <div id="review">
-        <form action="/review" method="POST">
-            <h2>Beschrijving</h2>
-            <!--Hier nog de beschrijvingen van de steden zetten die in Cheuns database staan-->
-            <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum.<br> 
-            </p><br><br>
-            <input type="hidden" name="imageId" value="<%= image.id %>">
-            <input type="text" name="review" placeholder="Schrijf een review!"><br><br>
-            <input type="submit" value="Verstuur">
-        </form>
-    </div>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

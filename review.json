@@ -1,9 +1,12 @@
 [
-  { "review": "Such a nice city, very tropical and warm. Beautiful culture."
+  { "name": "Maria",
+    "review": "Such a nice city, very tropical and warm. Beautiful culture."
+},  
+{   "name": "Rayan",
+    "review": "Best trip of my life! Im visiting it again next year."
 },
-{   "review": "Best trip of my life! Im visiting it again next year."
-},
-{   "review": "The food was the best part. Me and my husband had such a blast!"
+{   "name": "Tyrone",
+    "review": "The food was the best part. Me and my husband had such a blast!"
 }
 ]
 
