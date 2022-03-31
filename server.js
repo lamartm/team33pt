@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
-const slug = require("slug");
+const sessions = require("express-session");
 
 const getUserData = require("./database");
 
 const dbName = "tech-3-3";
+
+let session;
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -17,10 +19,23 @@ app.use((err, req, res, next) => {
   res.status(404).send("404 not found");
 });
 
+app.use(
+  sessions({
+    secret: "dog plant",
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 },
+    resave: false,
+  })
+);
+
 app.get("/", (req, res) => {
-  res.render("login", {
-    pageTitle: `log-in`,
-  });
+  session = req.session;
+
+  session.userid
+    ? loggedInUser(res)
+    : res.render("login", {
+        pageTitle: `log-in`,
+      });
 });
 
 app.get("/signup", (req, res) => {
@@ -29,19 +44,15 @@ app.get("/signup", (req, res) => {
   });
 });
 
-app.get("/profile/:id", (req, res) => {
-  getUserData(dbName)
-    .then((user) =>
-      user.findOne({
-        username: req.params.id,
-      })
-    )
-    .then((foundUser) =>
-      res.render("profile", {
-        data: foundUser,
-        pageTitle: `profile`,
-      })
-    );
+app.get("/profile", (req, res) => {
+  session = req.session;
+
+  loggedInUser(res);
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 });
 
 app.get("/error/:id", (req, res) => {
@@ -64,10 +75,10 @@ app.listen(port, function () {
 });
 
 function createUser(req, res) {
-  const username = slug(req.body.username).toLowerCase();
+  session = req.session;
 
   let newUserData = {
-    username: username,
+    username: req.body.username,
     password: req.body.password,
     name: req.body.name,
     likes: req.body.interests,
@@ -79,7 +90,8 @@ function createUser(req, res) {
 
     if (emailCheck === null) {
       data.insertOne(newUserData);
-      res.redirect("/profile/" + username);
+      session.userid = req.body.username;
+      res.redirect("/profile");
     } else {
       res.redirect("/error/" + "email");
     }
@@ -87,7 +99,7 @@ function createUser(req, res) {
 }
 
 function checkForUser(req, res) {
-  const username = slug(req.body.username).toLowerCase();
+  session = req.session;
 
   getUserData(dbName)
     .then((data) =>
@@ -96,9 +108,27 @@ function checkForUser(req, res) {
         password: req.body.password,
       })
     )
+    .then((user) => {
+      if (user) {
+        session.userid = req.body.username;
+        res.redirect("/profile");
+      } else {
+        res.redirect("/error/" + "user");
+      }
+    });
+}
+
+function loggedInUser(response) {
+  getUserData(dbName)
     .then((user) =>
-      user
-        ? res.redirect("/profile/" + username)
-        : res.redirect("/error/" + "user")
+      user.findOne({
+        username: session.userid,
+      })
+    )
+    .then((foundUser) =>
+      response.render("profile", {
+        data: foundUser,
+        pageTitle: `profile`,
+      })
     );
 }
