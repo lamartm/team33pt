@@ -3,6 +3,9 @@ const app = express();
 const port = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 const sessions = require("express-session");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const getUserData = require("./database");
 
@@ -21,7 +24,7 @@ app.use((err, req, res, next) => {
 
 app.use(
   sessions({
-    secret: "dog plant",
+    secret: process.env.SESSION_KEY,
     saveUninitialized: true,
     cookie: { maxAge: 60000 },
     resave: false,
@@ -30,7 +33,7 @@ app.use(
 
 app.get("/", (req, res) => {
   session = req.session;
-
+  console.log(session);
   session.userid
     ? loggedInUser(res)
     : res.render("login", {
