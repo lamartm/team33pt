@@ -56,7 +56,7 @@ app.get("/error/:id", (req, res) => {
       });
 });
 
-app.post("/login", checkForUser);
+app.post("/", checkForUser);
 app.post("/signup", createUser);
 
 app.listen(port, function () {
