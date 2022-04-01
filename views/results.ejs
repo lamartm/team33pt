@@ -2,11 +2,11 @@
     <ul>
         <% hotspotsResults.forEach(results => { %>
         <li>
-            <img src="/images/<%- results.city_imageUrl%>">
+            <img src="/images/hotspots/<%- results.city_imageUrl%>" alt="picture of <%- results.city_name %> ">
+            <p><%- results.city_name %></p>
             <p><%- results.description %></p>
         </li>
         <% }) %>
     </ul>
-    <input type="text">
 
 <%- include ("./partials/footer.ejs") %>

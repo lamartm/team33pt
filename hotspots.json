@@ -1,0 +1,91 @@
+[
+    {
+        "slug": "hong_kong",
+        "city_name": "Hong Kong",
+        "name": "Hong Kong",
+        "category": "Stad",
+        "city_imageUrl": "hong_kong.jpg",
+        "description":"A vibrant city that is very exciting and safe. It has a diverse culture packed with people and public transportation. The summers are very hot and humid and the winters are a bit colder. It is definitely a country to put on your bucket list!"
+    },
+    {
+        "slug": "seoul",
+        "city_name": "Seoul",
+        "name": "Korea (Republic of)",
+        "category": "Stad",
+        "city_imageUrl": "seoul.jpg",
+        "description":"Seoul is the cultural, economic and political centre of South Korea. Seoul is considered the most livable city in Asia and one of the largest and most progressive cities in the world. It borders the Sea of Japan, the Yellow Sea, and North Korea. South Koreas terrain is mostly mountainous. We can guarantee you that you will enjoy Seoul."
+    },
+    {
+        "slug": "new_york",
+        "city_name": "New York",
+        "name": "United States of America",
+        "category": "Stad",
+        "city_imageUrl": "new_york.jpg",
+        "description":"New York is a city of diversity and dynamism. It is also a city of politics, economy and culture. New York City is one of the most popular cities in the United States. The city is known for the Statue of Liberty, Wall Street, Time Square, Central Park, Broadway shows and the tall skyscrapers. New York is an unforgettable experience."
+    },
+    {
+        "slug": "los_angeles",
+        "city_name": "Los Angeles",
+        "name": "United States of America",
+        "category": "Stad",
+        "city_imageUrl": "los_angeles.jpg",
+        "description":"Los Angeles is the most popular city in California. It is located on a broad basin in Southern California. The city is surrounded by mountains, valleys, forests, beautiful beaches along the Pacific Ocean and there is even a desert. LA is famous for its Hollywood stars and the TV & movie industries."
+    },  {
+        "slug": "tokyo",
+        "city_name": "Tokyo",
+        "name": "Japan",
+        "category": "Stad",
+        "city_imageUrl": "tokyo.jpg",
+        "description":"Tokyo is the capital city of Japan. It is located at the head of Tokyo Bay on the Pacific coast of central Honshu. Tokyo is famous for its Anime, electronics, manga and videogames. Tokyo has something for everyone and it is definitely a place to visit once a lifetime."
+    },  {
+        "slug": "bali",
+        "city_name": "Bali",
+        "name": "Indonesia",
+        "category": "Strand",
+        "city_imageUrl": "bali.jpg",
+        "description":"Bali is a popular destination for many people around the world and it is easy to see why. From its unending idyllic beaches, captivating spiritual energy, terraced rice fields, and exotic sunsets, there is so much to see and experience on this magnificent island paradise!"
+    },  {
+        "slug": "rome",
+        "city_name": "Rome",
+        "name": "Italy",
+        "category": "Cultuur",
+        "city_imageUrl": "rome.jpg",
+        "description":"Rome has been around for almost three thousand years and yet carries all that weight of history with a dolce vita lightness of heart. It is a city that combines the intimacy and human scale of a village with the cultural draws of a historic, art-laden European metropolis."
+    },  {
+        "slug": "paris",
+        "city_name": "Paris",
+        "name": "France",
+        "category": "Romantisch",
+        "city_imageUrl": "paris.jpg",
+        "description":"Paris: named the city of love by the greatest poets, writers, actors, and musicians who found inspiration in the beauty of this mesmerizing city. Whitestone townhouses ooze luxury, the smell of freshly baked croissants drifts through the air, and flowers hang at the sides of cobbled streets."
+    },  {
+        "slug": "vienna",
+        "city_name": "Vienna",
+        "name": "Austria",
+        "category": "Cultuur",
+        "city_imageUrl": "vienna.jpg",
+        "description":"Beyond the sheer beauty of the city, it is the relaxed, stress-free atmosphere that is most appealing. Everything runs on time. No one ever seems to be in a hurry. And, unlike other European capital cities, Vienna isn it overcrowded and swamped with tourism."
+    },  {
+        "slug": "malaga",
+        "city_name": "Malaga",
+        "name": "Spain",
+        "category": "Stad",
+        "city_imageUrl": "malaga.jpg",
+        "description":"Beyond its 16 sunny beaches, this Andalusian city on the shores of the Mediterranean has a fascinating cultural side. And the birthplace of Pablo Picasso has reinvented itself in recent year, inaugurating museums for all tastes."
+    },  {
+        "slug": "reykjavik",
+        "city_name": "Reykjavik",
+        "name": "Iceland",
+        "category": "Natuur",
+        "city_imageUrl": "reykjavik.jpg",
+        "description":"The worlds most northerly capital, Reykjavík has a sense of space and calm that comes as a breath of fresh air to travellers accustomed to the bustle of the traffic-clogged streets in Europes other major cities. Although small for a capital, Reykjavík is a throbbing urban metropolis compared with Icelands other built-up areas."
+    },  {
+        "slug": "ibiza",
+        "city_name": "Ibiza",
+        "name": "Spain",
+        "category": "Uitgaan",
+        "city_imageUrl": "ibiza.jpg",
+        "description":"Beautiful natural parks, peaceful coasts with turquoise waters and steep cliffs, endless nights of partying, picturesque villages, mouth-watering typical dishes and the most breathtaking sunsets in the Mediterranean. Ibiza is all this and much more: discover it."
+    }
+
+]

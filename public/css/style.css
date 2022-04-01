@@ -107,6 +107,15 @@ body {
   .form label {
     margin-bottom: var(--space-smaller);
   }
+
+  fieldset {
+    all: unset;
+  }
+
+  legend {
+    padding: 0;
+    margin-bottom: .5rem;
+  }
   
   .interests {
     padding-top: var(--space-small);
@@ -114,6 +123,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: var(--space-medium);
+    all: unset;
   }
   
   .interests label {

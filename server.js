@@ -10,7 +10,8 @@ dotenv.config();
 
 const getUserData = require("./database");
 
-const dbUserCollection = "tech-3-3";
+const dbName = "tech-3-3";
+const dbUserCollection = "users";
 const dbHotspotsCollection = "hotspots";
 
 
@@ -83,9 +84,8 @@ app.get("/results", async (req, res) => {
         allQueries.push(hotspot.findOne({
             category: data
           })
-          .then((yoo) => {
-            return yoo
-
+          .then((results) => {
+            return results
           }))
       })
     })
@@ -95,20 +95,12 @@ app.get("/results", async (req, res) => {
     return data
   })
 
-  // console.log(allQueries)
-
-  
-  // console.log(hotspotsResults)
-
-
+  console.log(hotspotsResults)
 
   res.render('results',{
     hotspotsResults
   });
-
 });
-
-
 
 
 
