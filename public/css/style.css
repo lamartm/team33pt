@@ -205,3 +205,8 @@ body {
     justify-content: center;
     align-items: center;
   }
+
+  #submit-text {
+    text-align: center;
+    display: none;
+  }

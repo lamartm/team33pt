@@ -1,28 +1,24 @@
-<!DOCTYPE html>
-<html>
-
-<head> 
-</head>
-
-<body>
-    
-    <main>
+<%- include ("./partials/head.ejs") %>
         <div id="review">
-            <form action="/homepage" method="POST">
+            <form method="post">
                 <h1>Reviews</h1>
-                    <h2><%= data.name%></h2>
-                    <p><%= data.review %></p>
-
+                    <div>
+                        <div>
+                            <h2><%= data.name%></h2>
+                            <p><%= data.review %></p>
+                        </div>
+                    </div>
+            
                 <div>
                     <input type="text" name="name" placeholder="Your name"><br>
-                    <input type="text" name="review" placeholder="Schrijf een review!"><br><br>
-                    <input type="submit" value="Verstuur">
+                    <input type="text" name="review" placeholder="Schrijf een review!">
+                    <input id="review-submit" type="submit" value="Verstuur">
+                </div>
+                <div class="submit-review">
+                    <p id="submit-text">You're review is submitted!</p>
                 </div>
             </form>
         </div>
-    </main>
-
-</body>
-
-</html>
+        <script src="/js/review.js"></script>
+        <%- include ("./partials/footer.ejs") %>
 

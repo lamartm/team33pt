@@ -3,7 +3,6 @@ const app = express();
 const port = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 const slug = require("slug");
-const data = require('./data.json');
 
 const getUserData = require("./database");
 
@@ -105,17 +104,44 @@ function checkForUser(req, res) {
 }
 
 app.get('/homepage', async (req, res) => {
+  
+  
   // Deze regel uncommenten zodra er een database is aangemaakt voor reviews
-  // const reviews = await db.collection('review').find({}).toArray();
-  res.render('homepage', {
-    data: data[Math.floor(Math.random() * data.length)]
-  });
-});
+
+  // getUserData("reviews")
+  //   .then((data) =>
+  //   data.insertMany(reviewData)
+  //   )
+  //   .then((user) =>
+  //     console.log(user)
+  //   );
+
+  // const reviews = await getUserData('reviews')
+  //   .then((data) => data.insertMany(reviewData))
+  //   .then((check) => console.log(check))
+  // .find({}).toArray();
+  // console.log(reviews)
+  getUserData("reviews")
+  .then((reviewData) => {
+      console.log(reviewData.find({}))
+      res.render('homepage', {
+        data: reviewData[Math.floor(Math.random() * reviewData.length)]
+      })
+    })
+
+// const reviews = await getUserData("reviews").find({}).toArray();
+// res.render('homepage', {
+//   reviews
+// });
+// });
+
+  
+// });
 
 // Review versturen
-app.post('/homepage', (req, res) => {
-db.collection('review').insertOne(req.body);
-});
+// app.post('/homepage', (req, res) => {
+// db.collection('reviews').insertOne(req.body);
+// }); 
 
 
-
+  })
