@@ -9,14 +9,15 @@
     <main>
         <div id="review">
             <form action="/homepage" method="POST">
-                <h2>Reviews</h2>
-                    <h2><%= review.name%></h2>
-                    <h3><%= review.review %></h3>
+                <h1>Reviews</h1>
+                    <h2><%= data.name%></h2>
+                    <p><%= data.review %></p>
 
-                <br><br>
-                <input type="text" name="name" placeholder="Your name"><br>
-                <input type="text" name="review" placeholder="Schrijf een review!"><br><br>
-                <input type="submit" value="Verstuur">
+                <div>
+                    <input type="text" name="name" placeholder="Your name"><br>
+                    <input type="text" name="review" placeholder="Schrijf een review!"><br><br>
+                    <input type="submit" value="Verstuur">
+                </div>
             </form>
         </div>
     </main>

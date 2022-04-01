@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 const slug = require("slug");
-const reviews = require('./review.json');
+const data = require('./data.json');
 
 const getUserData = require("./database");
 
@@ -108,13 +108,13 @@ app.get('/homepage', async (req, res) => {
   // Deze regel uncommenten zodra er een database is aangemaakt voor reviews
   // const reviews = await db.collection('review').find({}).toArray();
   res.render('homepage', {
-    review: reviews[Math.floor(Math.random() * reviews.length)]
+    data: data[Math.floor(Math.random() * data.length)]
   });
 });
 
 // Review versturen
 app.post('/homepage', (req, res) => {
-db.collection('Reviews').insertOne(req.body);
+db.collection('review').insertOne(req.body);
 });
 
 
