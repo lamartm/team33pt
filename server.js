@@ -5,18 +5,30 @@ const bodyParser = require("body-parser");
 const sessions = require("express-session");
 const dotenv = require("dotenv");
 
+
 dotenv.config();
 
 const getUserData = require("./database");
 
-const dbName = "tech-3-3";
+const dbUserCollection = "tech-3-3";
+const dbHotspotsCollection = "hotspots";
+
+
+const connectDB = require("./config/dbConnect");
+const {
+  default: mongoose
+} = require("mongoose");
+
+connectDB();
 
 let session;
 
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 app.use((err, req, res, next) => {
   res.status(404).send("404 not found");
@@ -26,7 +38,9 @@ app.use(
   sessions({
     secret: process.env.SESSION_KEY,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 },
+    cookie: {
+      maxAge: 60000
+    },
     resave: false,
   })
 );
@@ -34,12 +48,70 @@ app.use(
 app.get("/", (req, res) => {
   session = req.session;
   console.log(session);
-  session.userid
-    ? loggedInUser(res)
-    : res.render("login", {
-        pageTitle: `log-in`,
-      });
+  session.userid ?
+    loggedInUser(res) :
+    res.render("login", {
+      pageTitle: `log-in`,
+    });
 });
+
+
+
+
+
+
+
+
+app.get("/results", async (req, res) => {
+  session = req.session;
+  const userId = session.userid;
+
+  const userObject = await getUserData(dbUserCollection)
+    .then((user) =>
+      user.findOne({
+        username: userId
+      })
+    ).then((foundUser) => {
+      return foundUser.likes;
+    })
+
+  const allQueries = [];
+
+  await getUserData(dbHotspotsCollection)
+    .then((hotspot) => {
+      userObject.forEach((data) => {
+        allQueries.push(hotspot.findOne({
+            category: data
+          })
+          .then((yoo) => {
+            return yoo
+
+          }))
+      })
+    })
+
+  const hotspotsResults = await Promise.all(allQueries).then(data => {
+    console.log('we are done');
+    return data
+  })
+
+  // console.log(allQueries)
+
+  
+  // console.log(hotspotsResults)
+
+
+
+  res.render('results',{
+    hotspotsResults
+  });
+
+});
+
+
+
+
+
 
 app.get("/signup", (req, res) => {
   res.render("signup", {
@@ -59,19 +131,20 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/error/:id", (req, res) => {
-  req.params.id === "email"
-    ? res.render("error", {
-        data: "De gekozen e-mail adres is al in gebruik",
-        pageTitle: `error`,
-      })
-    : res.render("error", {
-        data: "Gebruiker niet gevonden",
-        pageTitle: `error`,
-      });
+  req.params.id === "email" ?
+    res.render("error", {
+      data: "De gekozen e-mail adres is al in gebruik",
+      pageTitle: `error`,
+    }) :
+    res.render("error", {
+      data: "Gebruiker niet gevonden",
+      pageTitle: `error`,
+    });
 });
 
 app.post("/", checkForUser);
 app.post("/signup", createUser);
+
 
 
 function createUser(req, res) {
@@ -85,8 +158,10 @@ function createUser(req, res) {
     email: req.body.email,
   };
 
-  getUserData(dbName).then(async (data) => {
-    const emailCheck = await data.findOne({ email: req.body.email });
+  getUserData(dbUserCollection).then(async (data) => {
+    const emailCheck = await data.findOne({
+      email: req.body.email
+    });
 
     if (emailCheck === null) {
       data.insertOne(newUserData);
@@ -98,10 +173,12 @@ function createUser(req, res) {
   });
 }
 
+
+
 function checkForUser(req, res) {
   session = req.session;
 
-  getUserData(dbName)
+  getUserData(dbUserCollection)
     .then((data) =>
       data.findOne({
         username: req.body.username,
@@ -111,6 +188,7 @@ function checkForUser(req, res) {
     .then((user) => {
       if (user) {
         session.userid = req.body.username;
+        console.log(session)
         res.redirect("/profile");
       } else {
         res.redirect("/error/" + "user");
@@ -119,7 +197,7 @@ function checkForUser(req, res) {
 }
 
 function loggedInUser(response) {
-  getUserData(dbName)
+  getUserData(dbUserCollection)
     .then((user) =>
       user.findOne({
         username: session.userid,
@@ -133,6 +211,12 @@ function loggedInUser(response) {
     );
 }
 
-app.listen(port, function () {
-  console.log(`Live on localhost:${port}`);
-});
+
+
+
+mongoose.connection.once('open', () => {
+  console.log('connected to Mongoose');
+  app.listen(port, function () {
+    console.log(`Live on http://localhost:${port}`);
+  });
+})

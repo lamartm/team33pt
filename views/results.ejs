@@ -1,0 +1,12 @@
+<%- include ("./partials/head.ejs") %>
+    <ul>
+        <% hotspotsResults.forEach(results => { %>
+        <li>
+            <img src="/images/<%- results.city_imageUrl%>">
+            <p><%- results.description %></p>
+        </li>
+        <% }) %>
+    </ul>
+    <input type="text">
+
+<%- include ("./partials/footer.ejs") %>
