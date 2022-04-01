@@ -1,8 +1,11 @@
 <%- include ("./partials/head.ejs") %>
     <section class="about">
-        <h1 class="app-title""><span>Location</span> Matcher</h1>
+        <img src="/images/LoginHeader.png" alt="">
         <div class="box">
-            <h2>Log in</h2>
+            <div class="login">
+                <h2>Log in</h2>
+                <a href="/signup">Register</a>
+            </div>
             <form method="post" class="form">
                 <label for="username">Username</label>
                 <input type="text" name="username" required>
@@ -12,8 +15,7 @@
 
                 <button class="button" type="submit">Log in</button>
             </form>
-            <p>No account yet?</p>
-            <a href="/signup"><button class="button">Sign up</button></a>
         </div>
+        <img src="/images/LoginFooter.png" alt="">
     </section>
 <%- include ("./partials/footer.ejs") %>
