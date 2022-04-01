@@ -29,6 +29,16 @@ app.get("/signup", (req, res) => {
   });
 });
 
+app.get("/homepage", async (req, res) => {
+  getUserData("reviews").then((reviewData) => {
+    reviewData.find().toArray(function (e, d) {
+      res.render("homepage", {
+        data: d[Math.floor(Math.random() * d.length)],
+      });
+    });
+  });
+});
+
 app.get("/profile/:id", (req, res) => {
   getUserData(dbName)
     .then((user) =>
@@ -58,6 +68,10 @@ app.get("/error/:id", (req, res) => {
 
 app.post("/login", checkForUser);
 app.post("/signup", createUser);
+app.post("/homepage", (req, res) => {
+  getUserData("reviews").then((review) => review.insertOne(req.body));
+  res.status(204).send();
+});
 
 app.listen(port, function () {
   console.log(`Application started on port: ${port}`);
@@ -102,46 +116,3 @@ function checkForUser(req, res) {
         : res.redirect("/error/" + "user")
     );
 }
-
-app.get('/homepage', async (req, res) => {
-  
-  
-  // Deze regel uncommenten zodra er een database is aangemaakt voor reviews
-
-  // getUserData("reviews")
-  //   .then((data) =>
-  //   data.insertMany(reviewData)
-  //   )
-  //   .then((user) =>
-  //     console.log(user)
-  //   );
-
-  // const reviews = await getUserData('reviews')
-  //   .then((data) => data.insertMany(reviewData))
-  //   .then((check) => console.log(check))
-  // .find({}).toArray();
-  // console.log(reviews)
-  getUserData("reviews")
-  .then((reviewData) => {
-      console.log(reviewData.find({}))
-      res.render('homepage', {
-        data: reviewData[Math.floor(Math.random() * reviewData.length)]
-      })
-    })
-
-// const reviews = await getUserData("reviews").find({}).toArray();
-// res.render('homepage', {
-//   reviews
-// });
-// });
-
-  
-// });
-
-// Review versturen
-// app.post('/homepage', (req, res) => {
-// db.collection('reviews').insertOne(req.body);
-// }); 
-
-
-  })

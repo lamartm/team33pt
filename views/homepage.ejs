@@ -1,24 +1,21 @@
 <%- include ("./partials/head.ejs") %>
-        <div id="review">
-            <form method="post">
-                <h1>Reviews</h1>
-                    <div>
-                        <div>
-                            <h2><%= data.name%></h2>
-                            <p><%= data.review %></p>
-                        </div>
-                    </div>
-            
-                <div>
-                    <input type="text" name="name" placeholder="Your name"><br>
-                    <input type="text" name="review" placeholder="Schrijf een review!">
-                    <input id="review-submit" type="submit" value="Verstuur">
-                </div>
-                <div class="submit-review">
-                    <p id="submit-text">You're review is submitted!</p>
-                </div>
-            </form>
-        </div>
-        <script src="/js/review.js"></script>
-        <%- include ("./partials/footer.ejs") %>
+<div>
+  <form id="review" method="post">
+    <h1>Reviews</h1>
+    <div>
+      <article>
+        <h2><%= data.name%></h2>
+        <p><%= data.review %></p>
+      </article>
+    </div>
 
+    <div>
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="text" name="review" placeholder="Schrijf een review!" required />
+      <input id="review-submit" type="submit" value="Verstuur" />
+    </div>
+    <p id="submit-text">Your review is submitted!</p>
+  </form>
+</div>
+<script src="/js/review.js"></script>
+<%- include ("./partials/footer.ejs") %>
