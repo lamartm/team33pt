@@ -1,11 +1,37 @@
 <%- include ("./partials/head.ejs") %>
 <h1>Likes</h1>
 <section>
-    <ul>
+    <ul class="cards-list">
         <li>
-            <img class="activitypic" src="images/alpacas.png" alt="alpacas">
-            <span class="activityname">Wandelen met alpaca's</span>
+            <a href="#">
+                <img class="activitypic" src="images/alpacas.png" alt="alpacas">
+                <span class="activitylabel">Wandelen met alpaca's</span>
+            </a>
+        </li>
+        <li>
+            <a href="#"><img class="activitypic" src="images/rollerskating.png" alt="rollerschaatsdisco">
+                <span class="activitylabel">Rolschaats disco!</span>
+            </a>
+        </li>
+        <li>
+            <a href="#"><img class="activitypic" src="images/waterfiets.png" alt="waterfietsen">
+                <span class="activitylabel">Waterfietsen</span>
+            </a>
+        </li>
+        <li>
+            <a href="#"><img class="activitypic" src="images/skydiven.png" alt="skydiven">
+                <span class="activitylabel">Skydiven</span>
+            </a>
+        </li><li>
+            <a href="#"><img class="activitypic" src="images/yoga.png" alt="yoga">
+                <span class="activitylabel">Yoga</span>
+            </a>
+        </li><li>
+            <a href="#"><img class="activitypic" src="images/kralen.png" alt="skydiven">
+                <span class="activitylabel">Sieraden maken</span>
+            </a>
         </li>
     </ul>
+    <button>Terug naar matchen!</button>
 </section>
 <%- include ("./partials/footer.ejs") %>
