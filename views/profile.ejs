@@ -1,0 +1,19 @@
+<%- include ("./partials/head.ejs") %>
+  <section class="profile">
+    <h1><%- data.name %></h1>
+      <img id="person-pic" src="/images/person.png" />
+    <article id="person-info">
+      <p>Likes</p>
+      <ul>
+        <% if(Array.isArray(data.likes)) { %>
+          <% data.likes.forEach(genre => { %>
+          <li><%- genre %></li>
+          <% }) %>
+        <% } else{ %>
+          <li><%- data.likes %></li>
+        <% } %> 
+      </ul>
+    </article>
+    <a href="/logout">Log out</a>
+  </section>
+<%- include ("./partials/footer.ejs") %>
