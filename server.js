@@ -73,9 +73,6 @@ app.get("/error/:id", (req, res) => {
 app.post("/", checkForUser);
 app.post("/signup", createUser);
 
-app.listen(port, function () {
-  console.log(`Application started on port: ${port}`);
-});
 
 function createUser(req, res) {
   session = req.session;
@@ -135,3 +132,7 @@ function loggedInUser(response) {
       })
     );
 }
+
+app.listen(port, function () {
+  console.log(`Live on localhost:${port}`);
+});

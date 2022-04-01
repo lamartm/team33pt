@@ -21,8 +21,8 @@
     "rollup": "^2.70.1"
   },
   "scripts": {
-    "test": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
