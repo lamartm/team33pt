@@ -88,8 +88,13 @@ app.get("/results", async (req, res) => {
     return data;
   });
 
-  res.render("results", {
-    hotspotsResults,
+  getUserData("reviews").then((reviewData) => {
+    reviewData.find().toArray(function (e, d) {
+      res.render("results", {
+        hotspotsResults,
+        data: d,
+      });
+    });
   });
 });
 
@@ -125,15 +130,46 @@ app.get("/error/:id", (req, res) => {
 app.post("/", checkForUser);
 app.post("/signup", createUser);
 
+app.post("/review", (req, res) => {
+  console.log(req);
+  getUserData("reviews").then((review) => review.insertOne(req.body));
+  res.status(204).send();
+});
+
+app.post("/addSpot", (req, res) => {
+  session = req.session;
+
+  getUserData(dbUserCollection).then((data) => {
+    data.findOneAndUpdate(
+      { _id: session.userid },
+      {
+        $addToSet: {
+          favourites: [
+            {
+              image: req.body.city_imageUrl,
+              name: req.body.city_name,
+              description: req.body.description,
+            },
+          ],
+        },
+      }
+    );
+  });
+
+  res.status(204).send();
+});
+
 function createUser(req, res) {
   session = req.session;
 
   let newUserData = {
+    _id: req.body.username,
     username: req.body.username,
     password: req.body.password,
     name: req.body.name,
     likes: req.body.interests,
     email: req.body.email,
+    favourites: [],
   };
 
   getUserData(dbUserCollection).then(async (data) => {
