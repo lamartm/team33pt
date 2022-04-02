@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const sessions = require("express-session");
 const dotenv = require("dotenv");
 
-
 dotenv.config();
 
 const getUserData = require("./database");
@@ -14,11 +13,8 @@ const dbName = "tech-3-3";
 const dbUserCollection = "users";
 const dbHotspotsCollection = "hotspots";
 
-
 const connectDB = require("./config/dbConnect");
-const {
-  default: mongoose
-} = require("mongoose");
+const { default: mongoose } = require("mongoose");
 
 connectDB();
 
@@ -27,9 +23,11 @@ let session;
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 
 app.use((err, req, res, next) => {
   res.status(404).send("404 not found");
@@ -40,7 +38,7 @@ app.use(
     secret: process.env.SESSION_KEY,
     saveUninitialized: true,
     cookie: {
-      maxAge: 60000
+      maxAge: 60000,
     },
     resave: false,
   })
@@ -48,20 +46,12 @@ app.use(
 
 app.get("/", (req, res) => {
   session = req.session;
-  console.log(session);
-  session.userid ?
-    loggedInUser(res) :
-    res.render("login", {
-      pageTitle: `log-in`,
-    });
+  session.userid
+    ? loggedInUser(res)
+    : res.render("login", {
+        pageTitle: `log-in`,
+      });
 });
-
-
-
-
-
-
-
 
 app.get("/results", async (req, res) => {
   session = req.session;
@@ -70,40 +60,38 @@ app.get("/results", async (req, res) => {
   const userObject = await getUserData(dbUserCollection)
     .then((user) =>
       user.findOne({
-        username: userId
+        username: userId,
       })
-    ).then((foundUser) => {
+    )
+    .then((foundUser) => {
       return foundUser.likes;
-    })
+    });
 
   const allQueries = [];
 
-  await getUserData(dbHotspotsCollection)
-    .then((hotspot) => {
-      userObject.forEach((data) => {
-        allQueries.push(hotspot.findOne({
-            category: data
+  await getUserData(dbHotspotsCollection).then((hotspot) => {
+    userObject.forEach((selectedCategory) => {
+      allQueries.push(
+        hotspot
+          .find({
+            category: selectedCategory,
           })
-          .then((results) => {
-            return results
-          }))
-      })
-    })
+          .toArray()
+          .then((foundCategory) => {
+            return foundCategory;
+          })
+      );
+    });
+  });
 
-  const hotspotsResults = await Promise.all(allQueries).then(data => {
-    console.log('we are done');
-    return data
-  })
+  const hotspotsResults = await Promise.all(allQueries).then((data) => {
+    return data;
+  });
 
-  console.log(hotspotsResults)
-
-  res.render('results',{
-    hotspotsResults
+  res.render("results", {
+    hotspotsResults,
   });
 });
-
-
-
 
 app.get("/signup", (req, res) => {
   res.render("signup", {
@@ -123,21 +111,19 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/error/:id", (req, res) => {
-  req.params.id === "email" ?
-    res.render("error", {
-      data: "De gekozen e-mail adres is al in gebruik",
-      pageTitle: `error`,
-    }) :
-    res.render("error", {
-      data: "Gebruiker niet gevonden",
-      pageTitle: `error`,
-    });
+  req.params.id === "email"
+    ? res.render("error", {
+        data: "De gekozen e-mail adres is al in gebruik",
+        pageTitle: `error`,
+      })
+    : res.render("error", {
+        data: "Gebruiker niet gevonden",
+        pageTitle: `error`,
+      });
 });
 
 app.post("/", checkForUser);
 app.post("/signup", createUser);
-
-
 
 function createUser(req, res) {
   session = req.session;
@@ -152,7 +138,7 @@ function createUser(req, res) {
 
   getUserData(dbUserCollection).then(async (data) => {
     const emailCheck = await data.findOne({
-      email: req.body.email
+      email: req.body.email,
     });
 
     if (emailCheck === null) {
@@ -164,8 +150,6 @@ function createUser(req, res) {
     }
   });
 }
-
-
 
 function checkForUser(req, res) {
   session = req.session;
@@ -180,7 +164,6 @@ function checkForUser(req, res) {
     .then((user) => {
       if (user) {
         session.userid = req.body.username;
-        console.log(session)
         res.redirect("/profile");
       } else {
         res.redirect("/error/" + "user");
@@ -203,12 +186,9 @@ function loggedInUser(response) {
     );
 }
 
-
-
-
-mongoose.connection.once('open', () => {
-  console.log('connected to Mongoose');
+mongoose.connection.once("open", () => {
+  console.log("connected to Mongoose");
   app.listen(port, function () {
     console.log(`Live on http://localhost:${port}`);
   });
-})
+});
