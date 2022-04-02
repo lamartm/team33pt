@@ -107,6 +107,15 @@ body {
   .form label {
     margin-bottom: var(--space-smaller);
   }
+
+  fieldset {
+    all: unset;
+  }
+
+  legend {
+    padding: 0;
+    margin-bottom: .5rem;
+  }
   
   .interests {
     padding-top: var(--space-small);
@@ -114,6 +123,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: var(--space-medium);
+    all: unset;
   }
   
   .interests label {
@@ -204,4 +214,29 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
+  }
+  .personal-information {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #submit-favourite, #submit-text {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: var(--space-large);
+    background: var(--white);
+    border-radius: 6px;
+    transform: translate(-50%, -50%);
+  }
+
+  #submit-favourite span, #submit-text span {
+    position: fixed;
+    left: 87%;
+    top: 8%;
+  }
+
+  #submit-favourite span:hover, #submit-text span:hover{
+    cursor: pointer;
   }

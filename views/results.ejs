@@ -1,0 +1,50 @@
+<%- include ("./partials/head.ejs") %>
+    <header>
+        <a href="/logout">Log out</a>
+        <a href="">Link naar favorieten</a>
+    </header>
+    <ul>
+        <% hotspotsResults.forEach(results => { %>
+            <% for (let i = 0; i < results.length; i++) { %>
+                <li>
+                    <img src="/images/hotspots/<%- results[i].city_imageUrl%>" alt="picture of <%- results.city_name %> ">
+                    <p><%- results[i].city_name %></p>
+                    <p><%- results[i].description %></p>
+                </li>
+                <form action="/review" class="review" method="post">
+                    <h1>Reviews</h1>
+                    <div>
+                      <article>
+                            <% const review = data.filter(reviews => results[i].category === reviews.category) %>
+                            <% const randomReview = review[Math.floor(Math.random() * review.length)] %>
+                                <h2><%= randomReview.name %></h2>
+                                <p><%= randomReview.review %></p>
+                      </article>
+                    </div>
+                    <div>
+                      <input type="text" name="name" placeholder="Your name" required />
+                      <input type="text" name="review" placeholder="Schrijf een review!" required />
+                      <input type="hidden" id=<%- results[i].category %> name="category" value=<%- results[i].category %>>
+                      <input class="review-submit" type="submit" value="Verstuur" />
+                    </div>
+                </form>
+                <form action="/addSpot" class="addSpot" method="post">
+                    <% console.log(results[i].description) %>
+                    <input type="hidden" id=<%- results[i].city_imageUrl %> name="city_imageUrl" value=<%- results[i].city_imageUrl %>>
+                    <input type="hidden" id=<%- results[i].city_name %> name="city_name" value=<%- results[i].city_name %>>
+                    <input type="hidden" id=<%- results[i].description %> name="description" value=<%- JSON.stringify(results[i].description) %>>
+                    <input type="submit" value="Voeg spot aan favorieten">
+                </form>
+            <% } %> 
+        <% }) %>
+    </ul>
+    <article id="submit-text">
+        <span id="submit-text-return">&#10060;</span>
+        <p>Your review is submitted!</p>
+    </article>  
+    <article id="submit-favourite">
+        <span id="submit-favourite-return">&#10060;</span>
+        <p>Your selection has been added to favourites!</p>
+    </article>
+<script src="/js/review.js"></script>
+<%- include ("./partials/footer.ejs") %>
