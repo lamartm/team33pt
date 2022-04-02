@@ -113,7 +113,7 @@ app.get("/logout", (req, res) => {
 app.get("/error/:id", (req, res) => {
   req.params.id === "email"
     ? res.render("error", {
-        data: "De gekozen e-mail adres is al in gebruik",
+        data: "De gekozen e-mail adres is al in gebruik!",
         pageTitle: `error`,
       })
     : res.render("error", {
