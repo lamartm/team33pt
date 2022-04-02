@@ -9,7 +9,6 @@ dotenv.config();
 
 const getUserData = require("./database");
 
-const dbName = "tech-3-3";
 const dbUserCollection = "users";
 const dbHotspotsCollection = "hotspots";
 
@@ -104,12 +103,6 @@ app.get("/signup", (req, res) => {
   });
 });
 
-app.get("/profile", (req, res) => {
-  session = req.session;
-
-  loggedInUser(res);
-});
-
 app.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");
@@ -180,7 +173,7 @@ function createUser(req, res) {
     if (emailCheck === null) {
       data.insertOne(newUserData);
       session.userid = req.body.username;
-      res.redirect("/profile");
+      res.redirect("/results");
     } else {
       res.redirect("/error/" + "email");
     }
@@ -200,7 +193,7 @@ function checkForUser(req, res) {
     .then((user) => {
       if (user) {
         session.userid = req.body.username;
-        res.redirect("/profile");
+        res.redirect("/results");
       } else {
         res.redirect("/error/" + "user");
       }
@@ -214,12 +207,9 @@ function loggedInUser(response) {
         username: session.userid,
       })
     )
-    .then((foundUser) =>
-      response.render("profile", {
-        data: foundUser,
-        pageTitle: `profile`,
-      })
-    );
+    .then(() => {
+      response.redirect("/results");
+    });
 }
 
 mongoose.connection.once("open", () => {
