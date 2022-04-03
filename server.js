@@ -44,6 +44,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
+  console.log(res);
   session = req.session;
   res.header(
     "Cache-Control",
@@ -254,3 +255,5 @@ mongoose.connection.once("open", () => {
     console.log(`Live on http://localhost:${port}`);
   });
 });
+
+module.exports = app;

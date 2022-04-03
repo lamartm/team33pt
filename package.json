@@ -18,14 +18,17 @@
   },
   "devDependencies": {
     "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "eslint": "^8.11.0",
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
-    "rollup": "^2.70.1"
+    "rollup": "^2.70.1",
+    "supertest": "^6.2.2"
   },
   "scripts": {
     "start": "node server.js",
-    "test": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
