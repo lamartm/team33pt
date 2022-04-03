@@ -1,65 +1,52 @@
 <%- include ("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/signin.css"/>
+</head>
+
+<body>
+<%- include ("./partials/header.ejs") %>
 <section class="signup">
-  <div class="box">
-    <h1>Maak een account</h1>
-    <a class="cross" href="/"><span>Return</span></a>
-    <form class="form" method="post">
+
+  <div class="login">
+    <a id="register" href="/">Log in</a>
+    <h2>Register</h2>
+  </div>
+    
+  <form class="form" method="post">
+    <fieldset class="personal-information">
+      <legend>Persoonlijk gegevens</legend>
       <label for="name">Voornaam</label>
       <input type="text" name="name" required />
-
       <label for="surname">Achternaam</label>
       <input type="text" name="surname" required />
-
       <label for="username">Username</label>
       <input type="text" name="username" required />
-
       <label for="email">E-mail</label>
       <input type="email" name="email" required />
-
       <label for="password">Wachtwoord</label>
       <input type="password" name="password" required />
+    </fieldset>
 
-      <p>Selecteer je interesses</p>
+    <fieldset class="interests">
+      <legend>Selecteer je interesses</legend>
+      <input type="checkbox" id="Cultuur" name="interests" value="Cultuur" />
+      <label for="Cultuur"> Cultuur </label>
 
-      <div class="interests">
-        <input type="checkbox" id="Sport" name="interests" value="Sport" />
-        <label for="Sport"> Sport </label>
+      <input type="checkbox" id="Natuur" name="interests" value="Natuur" />
+      <label for="Natuur"> Natuur </label>
 
-        <input type="checkbox" id="Creativiteit" name="interests" value="Creativiteit" />
-        <label for="Creativiteit"> Creativiteit </label>
+      <input type="checkbox" id="Strand" name="interests" value="Strand" />
+      <label for="Strand"> Strand </label>
 
-        <input type="checkbox" id="Ontspanning" name="interests" value="Ontspanning"/>
-        <label for="Ontspanning"> Ontspanning </label>
+      <input type="checkbox" id="Romantisch" name="interests" value="Romantisch" />
+      <label for="Romantisch"> Romantisch </label>
 
-        <input type="checkbox" id="Eten" name="interests" value="Eten" />
-        <label for="Eten"> Eten </label>
+      <input type="checkbox" id="Uitgaan" name="interests" value="Uitgaan" />
+      <label for="Uitgaan"> Uitgaan </label>
 
-        <input type="checkbox" id="Natuur" name="interests" value="Natuur" />
-        <label for="Natuur"> Natuur </label>
-
-        <input type="checkbox" id="Avontuur" name="interests" value="Avontuur"/>
-        <label for="Avontuur"> Avontuur </label>
-
-        <input type="checkbox" id="Dieren" name="interests" value="Dieren" />
-        <label for="Dieren"> Dieren </label>
-
-        <input type="checkbox" id="Zon" name="interests" value="Zon" />
-        <label for="Zon"> Zon </label>
-
-        <input type="checkbox" id="Adrenaline" name="interests" value="Adrenaline" />
-        <label for="Adrenaline"> Adrenaline </label>
-
-        <input type="checkbox" id="Uitgaan" name="interests" value="Uitgaan" />
-        <label for="Uitgaan"> Uitgaan </label>
-
-        <input type="checkbox" id="Dansen" name="interests" value="Dansen" />
-        <label for="Dansen"> Dansen </label>
-
-        <input type="checkbox" id="Overnachten" name="interests" value="Overnachten" />
-        <label for="Overnachten"> Overnachten </label>
-      </div>
-      <button class="button" type="submit">Registreer</button>
-    </form>
-  </div>
+      <input type="checkbox" id="Stad" name="interests" value="Stad" />
+      <label for="Stad"> Stad</label>
+    </fieldset>
+    <button class="button" type="submit">Registreer</button>
+  </form>
 </section>
 <%- include ("./partials/footer.ejs") %>

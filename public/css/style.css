@@ -6,60 +6,46 @@
     --contrast-color: #F15A24;
     --background-color: #F2F2F2;
     --white: #FFFFFF;
-    --shadow: #808080;
+    --shadow: #c2c2c2;
+    --link: #808080;
 
     /* FONT SIZES */
     --font-small: 1rem;
-    --font-medium: 1.2rem;
-    --font-large: 2rem;
+    --font-medium: 1.05rem;
+    --font-large: 1.4rem;
 
     /* RADIUS */
     --radius-regular: 5px;
 
     /* SPACING */
     --space-small: 1em;
-    --space-medium: 2em;
+    --space-medium: 1.1em;
     --space-large: 3em;
 }
+
+  nav:first-of-type {
+    height: 10vh;
+    background-color: #29ABE2;
+    border-bottom: solid 10px #0071BC;
+    padding: 10px;
+  }
+  
+  nav:first-of-type img {
+    height: 100%;
+  }
 
   body {
     background-color: var(--background-color);
     font-family: 'Inter', sans-serif;
     margin: 0; 
-    height: 100%; 
-    max-width: 390px;
-    overflow: hidden;
   }
 
-  /* img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  } */
-
-  /* .circle {
-    width: 500px;
-    height: 500px;
-    background-color: var(--main-color);
-    border-style: solid;
-    border-width: 150px;
-    border-color: var(--shadow-color);
-    border-radius: 50%;
-    display: block;
-    position: absolute;
-    margin-left: -50vw;
-    z-index: -1;
-  } */
-
-  .box {
-    margin-top: 50px;
-    margin-left: 82.5px;
-  }
-
-  .login {
-    display: flex;
-    flex-direction: row;
+  h1 {
+    color: var(--main-color);
+    margin: 35px;
+    font-size: var(--font-large);
+    text-transform: uppercase;
+    text-align: center;
   }
 
   h2 {
@@ -67,24 +53,13 @@
     margin: 0;
     font-size: var(--font-small);
     text-transform: uppercase;
-    padding-right: 55px;
-    border-bottom: 2.5px solid var(--main-color);
-  }
-
-  a {
-    color: var(--shadow);
-    font-size: var(--font-small);
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding-right: 40px;
-    border-bottom: 2.5px solid var(--shadow);
   }
 
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 82.5px;
   }
 
   label {
@@ -104,8 +79,6 @@
     background-color: var(--contrast-color);
     width: 100px;
     height: 35px;
-    margin-top: 20px;
-    margin-left: 130px;
     border-radius: var(--radius-regular);
     border: none;
     color: var(--white);
@@ -114,7 +87,3 @@
     box-shadow: 5px 5px 10px var(--shadow);
   }
 
-  img:last-of-type {
-    position: absolute;
-    bottom: 0;
-  }

@@ -1,0 +1,32 @@
+h2 {
+    padding-right: 55px;
+    border-bottom: 2.5px solid var(--main-color);
+    margin-top: 50px;
+    margin-left: 82.5px;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+}
+
+div a {
+    color: var(--link);
+    font-size: var(--font-small);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-right: 40px;
+    margin-top: 50px;
+    border-bottom: 2.5px solid var(--link);
+}
+
+button {
+    margin-top: 20px;
+    margin-left: 130px;
+}
+
+img:last-of-type {
+    position: absolute;
+    bottom: 0;
+}

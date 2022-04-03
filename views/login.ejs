@@ -1,21 +1,23 @@
 <%- include ("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/login.css"/>
+</head>
+
+<body>
     <section class="about">
         <img src="/images/LoginHeader.png" alt="">
-        <div class="box">
-            <div class="login">
-                <h2>Log in</h2>
-                <a href="/signup">Register</a>
-            </div>
-            <form method="post" class="form">
-                <label for="username">Username</label>
-                <input type="text" name="username" required>
-
-                <label for="password">Password</label>
-                <input type="password" name="password" required>
-
-                <button class="button" type="submit">Log in</button>
-            </form>
+        <div class="login">
+            <h2>Log in</h2>
+            <a id="register" href="/signup">Register</a>
         </div>
+        <form method="post" class="form">
+            <label for="username">Username</label>
+            <input type="text" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+
+            <button class="button" type="submit">Log in</button>
+        </form>
         <img src="/images/LoginFooter.png" alt="">
     </section>
 <%- include ("./partials/footer.ejs") %>
