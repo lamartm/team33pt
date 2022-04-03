@@ -6,8 +6,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const newUser = {
-  username: process.env.USER_TEST,
-  password: process.env.USER_TEST_PASSWORD,
+  username: process.env.TEST_USER,
+  password: process.env.TEST_USER_PASSWORD,
 };
 
 const newAddedUser = {
@@ -32,7 +32,7 @@ describe("/POST home", () => {
       .send(newUser)
       .expect(302)
       .then((res) => {
-        expect(res.request._data.username).to.be.eql(process.env.USER_TEST);
+        expect(res.request._data.username).to.be.eql(process.env.TEST_USER);
         done();
       })
       .catch((err) => done(err));
