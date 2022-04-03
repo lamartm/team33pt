@@ -240,3 +240,11 @@ body {
   #submit-favourite span:hover, #submit-text span:hover{
     cursor: pointer;
   }
+
+  .submit-spot + label, .review-submit + label {
+    display: none;
+  }
+
+  .submit-spot:focus + label, .review-submit:focus + label {
+    display: initial;
+  }
