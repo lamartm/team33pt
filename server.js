@@ -74,18 +74,31 @@ app.get("/results", async (req, res) => {
   const allQueries = [];
 
   await getUserData(dbHotspotsCollection).then((hotspot) => {
-    userObject.forEach((selectedCategory) => {
+    if (Array.isArray(userObject)) {
+      userObject.forEach((selectedCategory) => {
+        allQueries.push(
+          hotspot
+            .find({
+              category: selectedCategory,
+            })
+            .toArray()
+            .then((foundCategory) => {
+              return foundCategory;
+            })
+        );
+      });
+    } else {
       allQueries.push(
         hotspot
           .find({
-            category: selectedCategory,
+            category: userObject,
           })
           .toArray()
           .then((foundCategory) => {
             return foundCategory;
           })
       );
-    });
+    }
   });
 
   const hotspotsResults = await Promise.all(allQueries).then((data) => {
