@@ -1,0 +1,11 @@
+
+<%- include ("./partials/head.ejs") %>
+<% data.forEach(favourite => { %>
+    <% for (let i = 0; i < favourite.length; i++) { %>
+        <article>
+            <img src="images/hotspots/<%- favourite[i].image%>">
+            <p><%- favourite[i].name%></p>
+        </article>
+    <% } %>
+<% }) %>
+<%- include ("./partials/footer.ejs") %>

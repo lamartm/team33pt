@@ -1,7 +1,7 @@
 <%- include ("./partials/head.ejs") %>
     <header>
         <a href="/logout">Log out</a>
-        <a href="">Link naar favorieten</a>
+        <a href="/likes">Link naar favorieten</a>
     </header>
     <ul>
         <% hotspotsResults.forEach(results => { %>
@@ -29,7 +29,6 @@
                     </div>
                 </form>
                 <form action="/addSpot" class="addSpot" method="post">
-                    <% console.log(results[i].description) %>
                     <input type="hidden" id=<%- results[i].city_imageUrl %> name="city_imageUrl" value=<%- results[i].city_imageUrl %>>
                     <input type="hidden" id=<%- results[i].city_name %> name="city_name" value=<%- results[i].city_name %>>
                     <input type="hidden" id=<%- results[i].description %> name="description" value=<%- JSON.stringify(results[i].description) %>>

@@ -13,7 +13,9 @@ const dbUserCollection = "users";
 const dbHotspotsCollection = "hotspots";
 
 const connectDB = require("./config/dbConnect");
-const { default: mongoose } = require("mongoose");
+const {
+  default: mongoose
+} = require("mongoose");
 
 connectDB();
 
@@ -45,6 +47,7 @@ app.use(
 
 app.get("/", (req, res) => {
   session = req.session;
+<<<<<<< HEAD
   res.header(
     "Cache-Control",
     "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
@@ -55,6 +58,15 @@ app.get("/", (req, res) => {
     : res.render("login", {
         pageTitle: `log-in`,
       });
+=======
+  console.log(session.userid);
+  console.log('hallo');
+  session.userid ?
+    loggedInUser(res) :
+    res.render("login", {
+      pageTitle: `log-in`,
+    });
+>>>>>>> liked
 });
 
 app.get("/results", async (req, res) => {
@@ -77,13 +89,13 @@ app.get("/results", async (req, res) => {
     userObject.forEach((selectedCategory) => {
       allQueries.push(
         hotspot
-          .find({
-            category: selectedCategory,
-          })
-          .toArray()
-          .then((foundCategory) => {
-            return foundCategory;
-          })
+        .find({
+          category: selectedCategory,
+        })
+        .toArray()
+        .then((foundCategory) => {
+          return foundCategory;
+        })
       );
     });
   });
@@ -114,22 +126,37 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/error/:id", (req, res) => {
-  req.params.id === "email"
-    ? res.render("error", {
-        data: "De gekozen e-mail adres is al in gebruik!",
-        pageTitle: `error`,
+  req.params.id === "email" ?
+    res.render("error", {
+      data: "De gekozen e-mail adres is al in gebruik!",
+      pageTitle: `error`,
+    }) :
+    res.render("error", {
+      data: "Gebruiker niet gevonden",
+      pageTitle: `error`,
+    });
+});
+
+app.get("/likes", (req, res) => {
+  session = req.session;
+  getUserData(dbUserCollection)
+    .then((data) =>
+      data.findOne({
+        username: session.userid,
       })
-    : res.render("error", {
-        data: "Gebruiker niet gevonden",
-        pageTitle: `error`,
+    )
+    .then((user) => {
+      res.render("likes", {
+        data: user.favourites,
+        pageTitle: `likes`,
       });
+    });
 });
 
 app.post("/", checkForUser);
 app.post("/signup", createUser);
 
 app.post("/review", (req, res) => {
-  console.log(req);
   getUserData("reviews").then((review) => review.insertOne(req.body));
   res.status(204).send();
 });
@@ -138,20 +165,17 @@ app.post("/addSpot", (req, res) => {
   session = req.session;
 
   getUserData(dbUserCollection).then((data) => {
-    data.findOneAndUpdate(
-      { _id: session.userid },
-      {
-        $addToSet: {
-          favourites: [
-            {
-              image: req.body.city_imageUrl,
-              name: req.body.city_name,
-              description: req.body.description,
-            },
-          ],
-        },
-      }
-    );
+    data.findOneAndUpdate({
+      _id: session.userid
+    }, {
+      $addToSet: {
+        favourites: [{
+          image: req.body.city_imageUrl,
+          name: req.body.city_name,
+          description: req.body.description,
+        }, ],
+      },
+    });
   });
 
   res.status(204).send();
@@ -187,6 +211,7 @@ function createUser(req, res) {
 
 function checkForUser(req, res) {
   session = req.session;
+  session.userid = req.body.username;
 
   getUserData(dbUserCollection)
     .then((data) =>
