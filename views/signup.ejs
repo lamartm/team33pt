@@ -22,6 +22,9 @@
         <input type="email" name="email" required />
         <label for="password">Wachtwoord</label>
         <input type="password" name="password" required />
+        <label for="country">Huidig locatie</label>
+        <select name="country" id="userCountry">
+        </select>
       </fieldset>
 
       <fieldset class="interests">
@@ -47,4 +50,5 @@
       <button class="button" type="submit">Registreer</button>
     </form>
   </section>
+  <script src="/js/countryselector.js"></script>
 <%- include ("./partials/footer.ejs") %>

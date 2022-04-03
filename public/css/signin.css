@@ -34,6 +34,10 @@ fieldset {
     padding: 0;
 }
 
+select{
+    background-color: var(--white);
+}
+
 legend {
     color: var(--main-color);
     margin: 0;
