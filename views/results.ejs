@@ -26,7 +26,7 @@
                       <input type="text" name="review" placeholder="Schrijf een review!" required />
                       <input type="hidden" id=<%- results[i].category %> name="category" value=<%- results[i].category %>>
                       <input class="review-submit" name="review-submit" type="submit" value="Verstuur" />
-                      <label for="review-submit">Review is toegevoegd!</label>
+                      <label for="review-submit" class="submit-review-label">Review is toegevoegd!</label>
                     </div>
                 </form>
                 <form action="/addSpot" class="addSpot" method="post">
@@ -34,7 +34,7 @@
                     <input type="hidden" id=<%- results[i].city_name %> name="city_name" value=<%- results[i].city_name %>>
                     <input type="hidden" id=<%- results[i].description %> name="description" value=<%- JSON.stringify(results[i].description) %>>
                     <input type="submit" name="submit-spot" class="submit-spot" value="Voeg spot aan favorieten">
-                    <label for="submit-spot">Spot is toegevoegd aan favorieten!</label>
+                    <label for="submit-spot" class="submit-spot-label">Spot is toegevoegd aan favorieten!</label>
                 </form>
             <% } %> 
         <% }) %>

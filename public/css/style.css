@@ -242,9 +242,9 @@ body {
   }
 
   .submit-spot + label, .review-submit + label {
-    display: none;
+    opacity: 0%;
   }
 
   .submit-spot:focus + label, .review-submit:focus + label {
-    display: initial;
+    opacity: 100%;
   }
