@@ -1,19 +1,22 @@
 <%- include ("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/login.css"/>
+</head>
+
+<body>
     <section class="about">
-        <h1 class="app-title""><span>Location</span> Matcher</h1>
-        <div class="box">
+        <img src="/images/LoginHeader.png" alt="">
+        <div class="login">
             <h2>Log in</h2>
-            <form method="post" class="form">
-                <label for="username">Username</label>
-                <input type="text" name="username" required>
-
-                <label for="password">Password</label>
-                <input type="password" name="password" required>
-
-                <button class="button" type="submit">Log in</button>
-            </form>
-            <p>No account yet?</p>
-            <a href="/signup"><button class="button">Sign up</button></a>
+            <a id="register" href="/signup">Register</a>
         </div>
+        <form method="post" class="form">
+            <label for="username">Username</label>
+            <input type="text" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+
+            <button class="button" type="submit">Log in</button>
+        </form>
+        <img src="/images/LoginFooter.png" alt="">
     </section>
 <%- include ("./partials/footer.ejs") %>

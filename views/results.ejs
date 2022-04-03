@@ -14,7 +14,7 @@
                 <form action="/review" class="review" method="post">
                     <h1>Reviews</h1>
                     <div>
-                      <article>
+                      <article> 
                             <% const review = data.filter(reviews => results[i].category === reviews.category) %>
                             <% const randomReview = review[Math.floor(Math.random() * review.length)] %>
                                 <h2><%= randomReview.name %></h2>
