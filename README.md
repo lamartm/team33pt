@@ -22,7 +22,7 @@ Run
 ## Database
 The database we are using is MongoDb.
 
-## MIT Licence
+## Licence
 The lisence that we are using is MIT licence.
 
 ## Contributers
