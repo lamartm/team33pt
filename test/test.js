@@ -1,20 +1,16 @@
 const expect = require("chai").expect;
 const request = require("supertest");
 const server = require("../server");
-let chai = require("chai");
-let chaiHttp = require("chai-http");
 const dotenv = require("dotenv");
-
-chai.use(chaiHttp);
 
 dotenv.config();
 
-const tempUser = {
+const newUser = {
   username: process.env.USER_TEST,
   password: process.env.USER_TEST_PASSWORD,
 };
 
-const tempNewUser = {
+const newAddedUser = {
   _id: "rolo",
   username: "rolo",
   password: "rolo",
@@ -25,15 +21,15 @@ const tempNewUser = {
 };
 
 before(function (done) {
-  this.timeout(3000);
-  setTimeout(done, 2000);
+  this.timeout(2000);
+  setTimeout(done, 1000);
 });
 
 describe("/POST home", () => {
   it("should get correct credentials", (done) => {
     request(server)
       .post("/")
-      .send(tempUser)
+      .send(newUser)
       .expect(302)
       .then((res) => {
         expect(res.request._data.username).to.be.eql(process.env.USER_TEST);
@@ -47,7 +43,7 @@ describe("/POST new users", () => {
   it("should register new user", (done) => {
     request(server)
       .post("/signup")
-      .send(tempNewUser)
+      .send(newAddedUser)
       .expect(302)
       .then((res) => {
         expect(res.request._data.username).to.be.eql("rolo");
@@ -59,7 +55,7 @@ describe("/POST new users", () => {
   it("shouldn't accept the username that already exists in the database", (done) => {
     request(server)
       .post("/signup")
-      .send(tempNewUser)
+      .send(newAddedUser)
       .expect(302)
       .then((res) => {
         expect(res.res.text).to.be.eql("Found. Redirecting to /error/email");
