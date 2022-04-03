@@ -1,9 +1,7 @@
-const assert = require("assert");
 const expect = require("chai").expect;
 const request = require("supertest");
 const server = require("../server");
 let chai = require("chai");
-let should = chai.should();
 let chaiHttp = require("chai-http");
 const dotenv = require("dotenv");
 
