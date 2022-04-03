@@ -13,7 +13,9 @@ const dbUserCollection = "users";
 const dbHotspotsCollection = "hotspots";
 
 const connectDB = require("./config/dbConnect");
-const { default: mongoose } = require("mongoose");
+const {
+  default: mongoose
+} = require("mongoose");
 
 connectDB();
 
@@ -50,11 +52,11 @@ app.get("/", (req, res) => {
     "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
   );
 
-  session.userid
-    ? loggedInUser(res)
-    : res.render("login", {
-        pageTitle: `log-in`,
-      });
+  session.userid ?
+    loggedInUser(res) :
+    res.render("login", {
+      pageTitle: `log-in`,
+    });
 });
 
 app.get("/results", async (req, res) => {
@@ -78,25 +80,25 @@ app.get("/results", async (req, res) => {
       userObject.forEach((selectedCategory) => {
         allQueries.push(
           hotspot
-            .find({
-              category: selectedCategory,
-            })
-            .toArray()
-            .then((foundCategory) => {
-              return foundCategory;
-            })
-        );
-      });
-    } else {
-      allQueries.push(
-        hotspot
           .find({
-            category: userObject,
+            category: selectedCategory,
           })
           .toArray()
           .then((foundCategory) => {
             return foundCategory;
           })
+        );
+      });
+    } else {
+      allQueries.push(
+        hotspot
+        .find({
+          category: userObject,
+        })
+        .toArray()
+        .then((foundCategory) => {
+          return foundCategory;
+        })
       );
     }
   });
@@ -127,15 +129,15 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/error/:id", (req, res) => {
-  req.params.id === "email"
-    ? res.render("error", {
-        data: "De gekozen e-mail adres is al in gebruik!",
-        pageTitle: `error`,
-      })
-    : res.render("error", {
-        data: "Gebruiker niet gevonden",
-        pageTitle: `error`,
-      });
+  req.params.id === "email" ?
+    res.render("error", {
+      data: "De gekozen e-mail adres is al in gebruik!",
+      pageTitle: `error`,
+    }) :
+    res.render("error", {
+      data: "Gebruiker niet gevonden",
+      pageTitle: `error`,
+    });
 });
 
 app.get("/likes", (req, res) => {
@@ -166,22 +168,17 @@ app.post("/addSpot", (req, res) => {
   session = req.session;
 
   getUserData(dbUserCollection).then((data) => {
-    data.findOneAndUpdate(
-      {
-        _id: session.userid,
+    data.findOneAndUpdate({
+      _id: session.userid,
+    }, {
+      $addToSet: {
+        favourites: [{
+          image: req.body.city_imageUrl,
+          name: req.body.city_name,
+          description: req.body.description,
+        }, ],
       },
-      {
-        $addToSet: {
-          favourites: [
-            {
-              image: req.body.city_imageUrl,
-              name: req.body.city_name,
-              description: req.body.description,
-            },
-          ],
-        },
-      }
-    );
+    });
   });
 
   res.status(204).send();

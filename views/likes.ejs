@@ -1,17 +1,11 @@
 <%- include ("./partials/head.ejs") %>
-<link rel="stylesheet" href="/css/likes.css"/>
-</head>
-<%- include ("./partials/header.ejs") %>
-<main>
-    <ul>
-        <% data.forEach(favourite => { %>
-            <% for (let i = 0; i < favourite.length; i++) { %>
-                <li>
-                    <img src="images/hotspots/<%- favourite[i].image%>" alt="picture of <%- favourite[i].name%> ">
-                    <p><%- favourite[i].name%></p>
-                </li>
-            <% } %>
-        <% }) %>
-    </ul>
-</main>
+
+<% data.forEach(favourite => { %>
+    <% for (let i = 0; i < favourite.length; i++) { %>
+        <article>
+            <img src="images/hotspots/<%-favourite[i].image%>">
+            <p><%- favourite[i].name%></p>
+        </article>
+    <% } %>
+<% }) %>
 <%- include ("./partials/footer.ejs") %>
