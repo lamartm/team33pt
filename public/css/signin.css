@@ -68,7 +68,7 @@ fieldset:last-of-type label {
     margin-top: 25px;
     padding: 35px 10px;
     border-radius: 5px;
-    width: 75px;
+    width: 110px;
     border: none;
     color: #4D4D4D;
     background-color: #CCCCCC;
@@ -87,4 +87,5 @@ fieldset:last-of-type label:nth-of-type(4) {
 button {
     margin: 10px 0 40px 130px;
     font-size: 0.7rem;
+    cursor: pointer;
 }

@@ -36,6 +36,7 @@ div a {
 button {
     margin-top: 20px;
     margin-left: 130px;
+    cursor: pointer;
 }
 
 img:last-of-type {

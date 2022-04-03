@@ -1,37 +1,83 @@
-:root {
-    /* COLORS */
-    --main-color: #0071BC;
-    --accent-color: #29ABE2;
-    --shadow-color: #2E3192;
-    --contrast-color: #F15A24;
-    --background-color: #F2F2F2;
-    --white: #FFFFFF;
-    --shadow: #c2c2c2;
-    --link: #808080;
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    /* FONT SIZES */
-    --font-small: 1rem;
-    --font-medium: 1.05rem;
-    --font-large: 1.4rem;
+  img,
+  picture {
+    max-width: 100%;
+    display: block;
+  }
 
-    /* RADIUS */
-    --radius-regular: 5px;
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
 
-    /* SPACING */
-    --space-small: 1em;
-    --space-medium: 1.1em;
-    --space-large: 3em;
-}
+  body {
+    min-height: 100vh;
+    text-rendering: optimizespeed;
+    line-height: 1.6;
+  }
 
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  /*******************/
+  /*CUSTOM PROPERTIES*/
+  /*******************/
+
+  :root {
+      /* COLORS */
+      --main-color: #0071BC;
+      --accent-color: #29ABE2;
+      --shadow-color: #2E3192;
+      --contrast-color: #F15A24;
+      --background-color: #F2F2F2;
+      --white: #FFFFFF;
+      --shadow: #c2c2c2;
+      --link: #808080;
+      --card-bg-color:#CCCCCC;
+      --card-accent-bg:#E8E8E8;
+
+      /* FONT SIZES */
+      --font-small: 1rem;
+      --font-medium: 1.2rem;
+      --font-large: 2rem;
+
+      /* RADIUS */
+      --radius-regular: 5px;
+
+      /* SPACING */
+      --space-small: 1em;
+      --space-medium: 2em;
+      --space-large: 3em;
+  }
+  header {
+    position: fixed;
+    width: 100%;
+    margin-bottom: var(--space-medium);
+  }
   nav:first-of-type {
     height: 10vh;
-    background-color: #29ABE2;
-    border-bottom: solid 10px #0071BC;
+    background-color: var(--accent-color);
+    border-bottom: solid 10px var(--main-color);
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
   }
-  
-  nav:first-of-type img {
-    height: 100%;
+
+  nav:first-of-type a img {
+    height: 2.5em;
   }
 
   body {
@@ -64,6 +110,7 @@
     border-radius: var(--radius-regular);
     border: none;
     box-shadow: 5px 5px 10px var(--shadow);
+    cursor: pointer;
   }
 
   button {

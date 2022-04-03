@@ -1,0 +1,89 @@
+main {
+    padding-top: 120px;
+}
+
+main>ul {
+    width: min(100% - 2rem, 45rem);
+    margin-inline: auto;
+}
+
+main>ul > li{
+    background-color:var(--white);
+    margin-bottom: var(--space-large);
+    border-radius: 10% 10% 0% 0%;
+}
+
+main>ul li article{
+    border-radius: 10% 10% 0% 0%;
+}
+
+main>ul li article img {
+    width: auto;
+    min-height: 15rem;
+    border-radius: 10% 10% 0% 0%;
+}
+
+main>ul li article p{
+    margin: auto;
+    padding-inline: 2rem;
+}
+
+main>ul li article p:first-of-type{
+    font-size: var(--font-large);
+    color: var(--contrast-color);
+    margin-top: .5rem;
+}
+
+main>ul li form{
+    display: block;
+    margin: auto;
+    width: fit-content;
+}
+
+main>ul li form input{
+    box-shadow: none;
+    border: 1px solid var(--shadow);
+}
+
+main>ul li article input{
+    all: unset;
+    box-shadow: none;
+    padding: .5rem var(--space-small);
+    background-color: var(--contrast-color);
+    color: var(--background-color);
+    border-radius: 2%;
+    margin-block: var(--space-small);
+    cursor: pointer;
+}
+
+main>ul li>div {
+    padding-inline: var(--space-small);
+    margin: auto;
+}
+
+main>ul li>div li {
+    background-color: var(--card-accent-bg);
+    padding: var(--space-small);
+    border-radius: 2%;
+}
+
+main>ul li>div>p {
+    color: var(--contrast-color);
+    font-size: var(--font-medium) ;
+}
+
+main>ul li>div form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: var(--space-medium);
+    margin: initial;
+    grid-auto-flow: var(--space-small);
+    gap: .5rem;
+    width: auto;
+}
+
+main>ul li>div textarea{
+    width: 100%;
+    max-width: 43rem;
+}

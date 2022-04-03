@@ -1,0 +1,242 @@
+:root {
+    /* COLORS */
+    --background-color: #e6e5e5;
+    --main-color: #d3872f;
+    --secondary-color: #d9bfd6;
+    --white: rgb(255, 255, 255);
+
+    /* FONT SIZES */
+    --font-smaller: 0.5rem;
+    --font-small: 1rem;
+    --font-medium: 2rem;
+    --font-large: 3rem;
+
+    /* SPACING */
+    --space-smaller: 0.5em;
+    --space-small: 1em;
+    --space-medium: 2em;
+    --space-large: 3em;
+    --space-xl: 4em;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .about {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about-info {
+    color: var(--white);
+    text-align: center;
+    padding: 0 var(--space-small) var(--space-medium) var(--space-small);
+  }
+  
+  .app-title {
+    color: var(--secondary-color);
+    font-size: var(--font-medium);
+  }
+  
+  .app-title span {
+    color: var(--main-color);
+  }
+  
+  .button {
+    padding: var(--space-smaller) var(--space-medium) var(--space-smaller) var(--space-medium);
+    background-color: var(--secondary-color);
+    border: none;
+    width: 100%;
+    margin-bottom: var(--space-smaller);
+    color: var(--white);
+    text-decoration: none;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+  }
+  
+  .box {
+    position: relative;
+    margin: 0 auto;
+    background-color: var(--white);
+    width: 100%;
+    max-width: 300px;
+    padding: var(--space-smaller) var(--space-medium) var(--space-medium) var(--space-medium);
+    color: var(--main-color);
+  }
+  
+  .box h1 {
+    text-align: center;
+    padding-bottom: var(--space-small);
+  }
+  
+  .cross {
+    text-decoration: none;
+    position: absolute;
+    right: 36px;
+    top: 19px;
+  }
+  
+  .cross span {
+    display: none;
+  }
+  
+  .cross::before {
+    content: "\00d7";
+    color: var(--main-color);
+    font-size: 40px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form input {
+    margin-bottom: var(--space-medium);
+    border: none;
+    border-bottom: 2px rgb(218, 218, 218) solid;
+  }
+  
+  .form label {
+    margin-bottom: var(--space-smaller);
+  }
+
+  fieldset {
+    all: unset;
+  }
+
+  legend {
+    padding: 0;
+    margin-bottom: .5rem;
+  }
+  
+  .interests {
+    padding-top: var(--space-small);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-medium);
+    all: unset;
+  }
+  
+  .interests label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 26%;
+    color: black;
+    background-color: var(--background-color);
+    height: 50%;
+    width: 50%;
+    padding: 1.5em;
+    margin-bottom: var(--space-xl);
+    font-size: 0.7rem;
+    box-shadow: 0px 2px 4px -2px black;
+    border-radius: 100%;
+    transition: background-color 0.5s ease;
+  }
+
+  .interests input[type=checkbox]:checked + label {
+    background-color: var(--main-color);
+  }
+  
+  .interests input {
+    display: none;
+  }
+  
+  @supports (display: grid) {
+    .interests {
+      padding-top: var(--space-small);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-content: space-between;
+    }
+  }
+  
+  .type-gamer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile {
+    padding: 0 var(--space-medium);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .profile h1 {
+    color: var(--main-color);
+    text-align: center;
+  }
+  
+  #person-info {
+    color: var(--main-color);
+  }
+  
+  #person-info ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    color: var(--main-color);
+  }
+  
+  #person-info ul li {
+    display: inline-block;
+  }
+  
+  .purple-text {
+    color: var(--main-color);
+  }
+  
+  #person-pic {
+    width: 30%;
+    margin: 0 auto;
+  }
+  
+  #rotation-label {
+    display: flex;
+  }
+  
+  .error-message {
+    display: flex;
+    color: white;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .personal-information {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #submit-favourite, #submit-text {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: var(--space-large);
+    background: var(--white);
+    border-radius: 6px;
+    transform: translate(-50%, -50%);
+  }
+
+  #submit-favourite span, #submit-text span {
+    position: fixed;
+    left: 87%;
+    top: 8%;
+  }
+
+  #submit-favourite span:hover, #submit-text span:hover{
+    cursor: pointer;
+  }
