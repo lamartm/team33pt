@@ -45,6 +45,11 @@ app.use(
 
 app.get("/", (req, res) => {
   session = req.session;
+  res.header(
+    "Cache-Control",
+    "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
+  );
+
   session.userid
     ? loggedInUser(res)
     : res.render("login", {
