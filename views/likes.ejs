@@ -9,6 +9,10 @@
                 <li>
                     <img src="images/hotspots/<%- favourite[i].image%>" alt="picture of <%- favourite[i].name%> ">
                     <p><%- favourite[i].name%></p>
+                    <form action="/deleteHotspot" method="post">
+                        <input type="hidden" id=<%- favourite[i].slug %> name="deleteBtn" value=<%- favourite[i].slug %>>
+                        <input name="deleteBtn" type="submit" value=<%- favourite[i].name%>>
+                    </form>
                 </li>
             <% } %>
         <% }) %>

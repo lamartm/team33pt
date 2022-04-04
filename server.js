@@ -13,7 +13,9 @@ const dbUserCollection = "users";
 const dbHotspotsCollection = "hotspots";
 
 const connectDB = require("./config/dbConnect");
-const { default: mongoose } = require("mongoose");
+const {
+  default: mongoose
+} = require("mongoose");
 
 connectDB();
 
@@ -44,18 +46,17 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  console.log(res);
   session = req.session;
   res.header(
     "Cache-Control",
     "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
   );
 
-  session.userid
-    ? loggedInUser(res)
-    : res.render("login", {
-        pageTitle: `log-in`,
-      });
+  session.userid ?
+    loggedInUser(res) :
+    res.render("login", {
+      pageTitle: `log-in`,
+    });
 });
 
 app.get("/results", async (req, res) => {
@@ -79,25 +80,25 @@ app.get("/results", async (req, res) => {
       userObject.forEach((selectedCategory) => {
         allQueries.push(
           hotspot
-            .find({
-              category: selectedCategory,
-            })
-            .toArray()
-            .then((foundCategory) => {
-              return foundCategory;
-            })
-        );
-      });
-    } else {
-      allQueries.push(
-        hotspot
           .find({
-            category: userObject,
+            category: selectedCategory,
           })
           .toArray()
           .then((foundCategory) => {
             return foundCategory;
           })
+        );
+      });
+    } else {
+      allQueries.push(
+        hotspot
+        .find({
+          category: userObject,
+        })
+        .toArray()
+        .then((foundCategory) => {
+          return foundCategory;
+        })
       );
     }
   });
@@ -128,15 +129,15 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/error/:id", (req, res) => {
-  req.params.id === "email"
-    ? res.render("error", {
-        data: "De gekozen e-mail adres is al in gebruik!",
-        pageTitle: `error`,
-      })
-    : res.render("error", {
-        data: "Gebruiker niet gevonden",
-        pageTitle: `error`,
-      });
+  req.params.id === "email" ?
+    res.render("error", {
+      data: "De gekozen e-mail adres is al in gebruik!",
+      pageTitle: `error`,
+    }) :
+    res.render("error", {
+      data: "Gebruiker niet gevonden",
+      pageTitle: `error`,
+    });
 });
 
 app.get("/likes", (req, res) => {
@@ -167,26 +168,75 @@ app.post("/addSpot", (req, res) => {
   session = req.session;
 
   getUserData(dbUserCollection).then((data) => {
-    data.findOneAndUpdate(
-      {
-        _id: session.userid,
+    data.findOneAndUpdate({
+      _id: session.userid,
+    }, {
+      $addToSet: {
+        favourites: [{
+          image: req.body.city_imageUrl,
+          name: req.body.city_name,
+          description: req.body.description,
+        }, ],
       },
-      {
-        $addToSet: {
-          favourites: [
-            {
-              image: req.body.city_imageUrl,
-              name: req.body.city_name,
-              description: req.body.description,
-            },
-          ],
-        },
-      }
-    );
+    });
   });
 
   res.status(204).send();
 });
+
+
+
+app.post("/deleteHotspot", async (req, res) => {
+  session = req.session;
+  const userId = session.userid;
+  // console.log(req.body.deleteBtn)
+
+  getUserData(dbUserCollection)
+    .then((user) =>
+      user.findOne({
+        username: userId,
+      })
+    )
+    .then((data) => {
+      console.log(data.favourites[1])
+      for (let i = 0; i < data.favourites.length; i++) {
+        if (data.favourites[i][0].name === req.body.deleteBtn) {
+          data.favourites.splice(1);
+          console.log("WERKT")
+          // getUserData(dbUserCollection).updateOne({
+          //   "username": userId,
+          //   "favourites": req.body.deleteBtn
+          // }, {
+          //   $set: {
+          //     "violations": 3
+          //   }
+          // })
+        } else {
+          console.log("not the one")
+        }
+      }
+    })
+
+
+  // const userFavourites = await getUserData(dbUserCollection)
+  //   .then((user) =>
+  //     user.findOne({
+  //       username: userId,
+  //     })
+  //   )
+  //   .then((foundUser) => {
+  //     foundUser.favourites.forEach((d) => {
+  //       d.name === req.body.deleteBtn ? d
+  //     })
+  //     return foundUser.favourites;
+  //   });
+  // const chosenCountry = req.body.deleteBtn
+
+})
+
+
+
+
 
 function createUser(req, res) {
   session = req.session;
