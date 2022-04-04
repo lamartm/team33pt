@@ -3,6 +3,9 @@ const gNodemon = require('gulp-nodemon')
 const cCSS = require('gulp-clean-css');
 const cPrefix = require('gulp-autoprefixer')
 
+//Cheun helped me writing this code.
+//I watched this video for instructions: https://www.youtube.com/watch?v=LYbt50dhTko
+
 gulp.task('css', () => (
     gulp.src('./public/css/*.css')
     .pipe(cCSS({
