@@ -44,7 +44,6 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  console.log(res);
   session = req.session;
   res.header(
     "Cache-Control",
@@ -61,7 +60,7 @@ app.get("/", (req, res) => {
 app.get("/results", async (req, res) => {
   session = req.session;
   const userId = session.userid;
-
+  
   const userObject = await getUserData(dbUserCollection)
     .then((user) =>
       user.findOne({
@@ -108,8 +107,12 @@ app.get("/results", async (req, res) => {
 
   getUserData("reviews").then((reviewData) => {
     reviewData.find().toArray(function (e, d) {
+      session = req.session;
+      const userId = session.userid;
+
       res.render("results", {
         hotspotsResults,
+        username: userId,
         data: d,
       });
     });

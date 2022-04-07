@@ -27,14 +27,16 @@
                 <p>Reviews</p>
                 <ul>
                     <% const review = data.filter(reviews => results[i].category === reviews.category) %>
-                    <% const randomReview = review[Math.floor(Math.random() * review.length)] %>
-                    <li>
-                        <h2><%= randomReview.name %></h2>
-                        <p><%= randomReview.review %></p>
-                    </li>
+                    <% const firstThreeReviews = review.slice(-3); %>
+                    <% firstThreeReviews.forEach((data) => { %>
+                        <li>
+                            <h2><%= data.name %></h2>
+                            <p><%= data.review %></p>
+                        </li>
+                    <% }) %>
                 </ul>
                 <form action="/review" class="review" method="post">
-                    <input type="text" name="name" placeholder="Your name" required />
+                    <input type="text" name="name" value=<%- username %> required />
                     <textarea type="text" name="review" placeholder="Schrijf een review!" required></textarea>
                     <input type="hidden" id=<%- results[i].category %> name="category" value=<%- results[i].category %>>
                     <input class="review-submit" name="review-submit" type="submit" value="Verstuur" />
