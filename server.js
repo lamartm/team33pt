@@ -203,14 +203,6 @@ app.post("/deleteHotspot", async (req, res) => {
         if (data.favourites[i][0].name === req.body.deleteBtn) {
           data.favourites.splice(1);
           console.log("WERKT")
-          // getUserData(dbUserCollection).updateOne({
-          //   "username": userId,
-          //   "favourites": req.body.deleteBtn
-          // }, {
-          //   $set: {
-          //     "violations": 3
-          //   }
-          // })
         } else {
           console.log("not the one")
         }
