@@ -198,11 +198,20 @@ app.post("/deleteHotspot", async (req, res) => {
       })
     )
     .then((data) => {
-      console.log(data.favourites[1])
+      console.log(data.favourites)
       for (let i = 0; i < data.favourites.length; i++) {
         if (data.favourites[i][0].name === req.body.deleteBtn) {
-          data.favourites.splice(1);
-          console.log("WERKT")
+
+          // getUserData(dbUserCollection).find({
+          //   username: userId
+          // }, {
+          //   favourites: {
+          //     $slice: 1
+          // }
+          // })
+          // console.log(data.favourites)
+          // console.log("WERKT");
+
         } else {
           console.log("not the one")
         }
