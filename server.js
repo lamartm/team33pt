@@ -105,13 +105,14 @@ app.get("/results", async (req, res) => {
     return data;
   });
 
-  getUserData("reviews").then((reviewData) => {
-    reviewData.find().toArray(function (e, d) {
-      session = req.session;
-      const userId = session.userid;
+  getUserData("reviews").then((reviewData) => { //reviews word opgehaald
+    reviewData.find().toArray(function (e, d) { //Vervolgens worden ze leesbaar gemaakt met toArray
+      session = req.session; 
+      const userId = session.userid; //userId word gekoppeld aan de session
 
-      res.render("results", {
-        hotspotsResults,
+      // userId toegevoegd
+      res.render("results", { //Vervolgens word alle data gestuurd naar de pagina en dit wordt gerenderd
+        hotspotsResults, 
         username: userId,
         data: d,
       });
@@ -161,9 +162,9 @@ app.get("/likes", (req, res) => {
 app.post("/", checkForUser);
 app.post("/signup", createUser);
 
+//Review word gepost
 app.post("/review", (req, res) => {
   getUserData("reviews").then((review) => review.insertOne(req.body));
-  res.status(204).send();
 });
 
 app.post("/addSpot", (req, res) => {

@@ -26,6 +26,11 @@
             <div>
                 <p>Reviews</p>
                 <ul>
+                    <!-- Bij firstThreeReviews heb ik een slice gemaakt, met -3 worden de meest recente resultaten gefilterd 
+                    en kan je dus je eigen geplaatste review zien 
+                    bron: https://bobbyhadz.com/blog/javascript-get-last-n-elements-of-array#:~:text=To%20get%20
+                    the%20last%20N,elements%20from%20the%20original%20array.-->
+
                     <% const review = data.filter(reviews => results[i].category === reviews.category) %>
                     <% const firstThreeReviews = review.slice(-3); %>
                     <% firstThreeReviews.forEach((data) => { %>
@@ -36,6 +41,7 @@
                     <% }) %>
                 </ul>
                 <form action="/review" class="review" method="post">
+                    <!-- Username toegevoegd bij value van de input field -->
                     <input type="text" name="name" value=<%- username %> required />
                     <textarea type="text" name="review" placeholder="Schrijf een review!" required></textarea>
                     <input type="hidden" id=<%- results[i].category %> name="category" value=<%- results[i].category %>>
