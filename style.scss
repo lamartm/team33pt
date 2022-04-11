@@ -1,0 +1,206 @@
+@import './colors';
+@import './fontsizes';
+@import './spacing';
+
+
+body {
+    background-color: $background-color;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .about {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about-info {
+    color: $white;
+    text-align: center;
+    padding: 0 $space-small $space-medium $space-small;
+  }
+  
+  .app-title {
+    color: $secondary-color;
+    font-size: $font-medium;
+
+    span {
+        color: $main-color;
+      }
+  }
+  
+
+  
+  .button {
+    padding: $space-smaller $space-medium $space-smaller $space-medium;
+    background-color: $secondary-color;
+    border: none;
+    width: 100%;
+    margin-bottom: $space-smaller;
+    color: $white;
+    text-decoration: none;
+
+    .button:hover {
+        cursor: pointer;
+      }
+  }
+
+  
+  .box {
+    position: relative;
+    margin: 0 auto;
+    background-color: $white;
+    width: 100%;
+    max-width: 300px;
+    padding: $space-smaller $space-medium $space-medium $space-medium;
+    color: $main-color;
+
+    h1 {
+        text-align: center;
+        padding-bottom: $space-small;
+      }
+  }
+  
+  
+  .cross {
+    text-decoration: none;
+    position: absolute;
+    right: 36px;
+    top: 19px;
+
+     span {
+        display: none;
+      }
+  }
+  
+
+  .cross::before {
+    content: "\00d7";
+    color: $main-color;
+    font-size: 40px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        margin-bottom: $space-medium;
+        border: none;
+        border-bottom: 2px rgb(218, 218, 218) solid;
+      }
+      
+        label {
+        margin-bottom: $space-smaller;
+      }
+  }
+  
+  
+  .interests {
+    padding-top: $space-small;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: $space-medium;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 26%;
+        color: black;
+        background-color: $background-color;
+        height: 50%;
+        width: 50%;
+        padding: 1.5em;
+        margin-bottom: $space-xl;
+        font-size: 0.7rem;
+        box-shadow: 0px 2px 4px -2px black;
+        border-radius: 100%;
+        transition: background-color 0.5s ease;
+      }
+  }
+  
+
+
+  .interests input[type=checkbox]:checked + label {
+    background-color: $main-color;
+  }
+  
+  .interests input {
+    display: none;
+  }
+  
+  @supports (display: grid) {
+    .interests {
+      padding-top: $space-small;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-content: space-between;
+    }
+  }
+  
+  .type-gamer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile {
+    padding: 0 $space-medium;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+        color: $main-color;
+        text-align: center;
+      }
+  }
+  
+  
+  #person-info {
+    color: $main-color;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        padding: 0;
+        color: $main-color;
+
+        ul li {
+            display: inline-block;
+          }
+      }
+  }
+  
+ 
+  .purple-text {
+    color: $main-color;
+  }
+  
+  #person-pic {
+    width: 30%;
+    margin: 0 auto;
+  }
+  
+  #rotation-label {
+    display: flex;
+  }
+  
+  .error-message {
+    display: flex;
+    color: $white;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #submit-text {
+    text-align: center;
+    display: none;
+  }
