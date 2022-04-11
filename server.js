@@ -14,6 +14,7 @@ const dbHotspotsCollection = "hotspots";
 
 const connectDB = require("./config/dbConnect");
 const {
+
   default: mongoose
 } = require("mongoose");
 
@@ -172,11 +173,11 @@ app.post("/addSpot", (req, res) => {
       _id: session.userid,
     }, {
       $addToSet: {
-        favourites: [{
+        favourites: {
           image: req.body.city_imageUrl,
           name: req.body.city_name,
           description: req.body.description,
-        }, ],
+        },
       },
     });
   });
@@ -189,51 +190,25 @@ app.post("/addSpot", (req, res) => {
 app.post("/deleteHotspot", async (req, res) => {
   session = req.session;
   const userId = session.userid;
-  // console.log(req.body.deleteBtn)
-
-  getUserData(dbUserCollection)
-    .then((user) =>
-      user.findOne({
-        username: userId,
-      })
-    )
-    .then((data) => {
-      console.log(data.favourites)
-      for (let i = 0; i < data.favourites.length; i++) {
-        if (data.favourites[i][0].name === req.body.deleteBtn) {
-
-          // getUserData(dbUserCollection).find({
-          //   username: userId
-          // }, {
-          //   favourites: {
-          //     $slice: 1
-          // }
-          // })
-          // console.log(data.favourites)
-          // console.log("WERKT");
-
-        } else {
-          console.log("not the one")
-        }
-      }
-    })
-
-
-  // const userFavourites = await getUserData(dbUserCollection)
-  //   .then((user) =>
-  //     user.findOne({
-  //       username: userId,
-  //     })
-  //   )
-  //   .then((foundUser) => {
-  //     foundUser.favourites.forEach((d) => {
-  //       d.name === req.body.deleteBtn ? d
-  //     })
-  //     return foundUser.favourites;
-  //   });
-  // const chosenCountry = req.body.deleteBtn
-
-})
+  console.log(req.body.deleteFav);
+  getUserData(dbUserCollection).then((user) => {
+    user.updateOne({
+      username: userId,
+      favourites: {
+        $elemMatch: {
+          name: req.body.deleteFav
+        },
+      },
+    }, {
+      $pull: {
+        favourites: {
+          name: req.body.deleteFav
+        },
+      },
+    });
+  });
+  res.redirect("/likes");
+});
 
 
 
